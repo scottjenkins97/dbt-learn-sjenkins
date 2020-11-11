@@ -9,7 +9,12 @@ models:
         tests:
           - unique
           - not_null
-
+  - name: orders
+    columns:
+      - name: customer_id
+        description: Not necessarily unique
+        tests:
+          - not_null
   - name: stg_customers
     columns:
       - name: customer_id
