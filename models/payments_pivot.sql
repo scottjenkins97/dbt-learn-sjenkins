@@ -11,12 +11,12 @@ pivot as
 (
   select
   order_id,
-  {% for pm in ['credit_card','bank_transfer','gift_card','coupon'] %}
-    {% if not loop.last %}
+  {%- for pm in ['credit_card','bank_transfer','gift_card','coupon'] -%}
+    {%- if not loop.last -%}
       sum(case when payment_method = '{{ pm }}' then amount else 0 end) as {{ pm }}_amount,
-    {% else %}
+    {%- else -%}
       sum(case when payment_method = '{{ pm }}' then amount else 0 end) as {{ pm }}_amount
-    {% endif %}
+    {%- endif -%}
   {% endfor %}
   from payments 
   group by order_id
